@@ -6,9 +6,6 @@ from django.http import HttpResponse
 def home(request):
     return render(request,'home/home.html')
 
-def login(request):
-    return HttpResponse('Login Page')
-
 def logout(request):
     return render(request,'home/index.html')
 

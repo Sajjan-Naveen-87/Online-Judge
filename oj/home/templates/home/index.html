@@ -78,28 +78,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--login Form start-->
-                    <form class="needs-validation" novalidate>
+                    <!--Signup Form start-->
+                    <form action="/signup" method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
-                                <label for="validationCustom01">First name</label>
-                                <input type="text" class="form-control" id="validationCustom01" placeholder="First Name"
+                                <label for="fname">First name <small>(Alfanumeric)</small></label>
+                                <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name"
                                     required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="validationCustom02">Last name</label>
-                                <input type="text" class="form-control" id="validationCustom02" placeholder="Last Name"
+                                <label for="lname">Last name <small>(Alfanumeric)</small></label>
+                                <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name"
                                     required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <label for="validationCustom04">Gender</label>
-                                <select class="custom-select" id="validationCustom04" required>
+                                <label for="gender">Choose Gender</label>
+                                <select name="gender" class="custom-select" id="gender" required>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="others">Others</option>
@@ -109,12 +110,12 @@
                                 </div>
                             </div>
                             <div class="col-md-10 mb-3">
-                                <label for="validationCustomUsername">Username</label>
+                                <label for="signupUsername">Username <small>(Alfanumeric)</small></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                                     </div>
-                                    <input type="text" class="form-control" id="validationCustomUsername"
+                                    <input type="text" name="signupUsername" class="form-control" id="signupUsername"
                                         aria-describedby="inputGroupPrepend" placeholder="username" required>
                                     <div class="invalid-feedback">
                                         Please choose a username.
@@ -122,8 +123,8 @@
                                 </div>
                             </div>
                             <div class="col-md-10 mb-3">
-                                <label for="validationCustom05">E-Mail</label>
-                                <input type="email" class="form-control" id="validationCustom05"
+                                <label for="email">E-Mail</label>
+                                <input type="email" name="email" class="form-control" id="email"
                                     placeholder="abc@email.com" required>
                                 <div class="invalid-feedback">
                                     Please provide a valid e-mail.
@@ -131,8 +132,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-10 mb-3">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="password"
+                                    <label for="pass1">Password</label>
+                                    <input type="password" name="pass1" class="form-control" id="pass1" placeholder="password"
                                         required>
                                     <div class="invalid-feedback">
                                         Please provide a valid password.
@@ -142,9 +143,8 @@
 
                             <div class="form-row">
                                 <div class="col-md-10 mb-3">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmPassword"
-                                        placeholder="confirm password" required>
+                                    <label for="pass2">Confirm Password</label>
+                                    <input type="password" name="pass2" class="form-control" id="pass2" placeholder="confirm password" required>
                                     <div class="invalid-feedback" id="confirmPwdError">
                                         Passwords do not match.
                                     </div>
@@ -174,8 +174,8 @@
                                 Array.prototype.filter.call(forms, function (form) {
                                     form.addEventListener('submit', function (event) {
                                         // Password match check
-                                        const password = document.getElementById('password');
-                                        const confirmPassword = document.getElementById('confirmPassword');
+                                        const password = document.getElementById('pass1');
+                                        const confirmPassword = document.getElementById('pass2');
                                         const confirmPwdError = document.getElementById('confirmPwdError');
 
                                         if (password.value !== confirmPassword.value) {
@@ -214,22 +214,23 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Sign up to BubbleCode</h5>
+                    <h5 class="modal-title" id="loginModalLabel">Login to BubbleCode</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <!--Sign up Form start-->
-                    <form class="needs-validation" novalidate>
+                    <form action="/login" method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
                         <div class="form-row">
                             <div class="col-md-10 mb-3">
-                                <label for="validationCustomUsername">Username</label>
+                                <label for="loginUsername">Username</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                                     </div>
-                                    <input type="text" class="form-control" id="validationCustomUsername"
+                                    <input type="text" name="loginUsername" class="form-control" id="loginUsername"
                                         aria-describedby="inputGroupPrepend" placeholder="username" required>
                                     <div class="invalid-feedback">
                                         Please enter valid username.
@@ -238,8 +239,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-10 mb-3">
-                                    <label for="validationCustom03">Password</label>
-                                    <input type="password" class="form-control" id="validationCustom03"
+                                    <label for="pass">Password</label>
+                                    <input type="password" name="password" class="form-control" id="password"
                                         placeholder="password" required>
                                     <div class="invalid-feedback">
                                         Please enter valid Password.
